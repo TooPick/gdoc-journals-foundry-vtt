@@ -1,5 +1,5 @@
 # GDoc Journals - Sync a journal with a Google Document
-![All Downloads](https://img.shields.io/github/downloads/TooPick/gdoc-journals-foundry-vtt/total?style=for-the-badge) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/TooPick/gdoc-journals-foundry-vtt?style=for-the-badge)
+![All Downloads](https://img.shields.io/github/downloads/TooPick/gdoc-journals-foundry-vtt/total?style=for-the-badge) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/TooPick/gdoc-journals-foundry-vtt?style=for-the-badge) ![](https://img.shields.io/badge/Foundry-v10-informational?style=for-the-badge)
 
 **GDoc Journals** allows you to **link a journal** to **one or more public Google Document**. Each document will be linked to one Journal Page and you only have to press **one button to synchronize** it with your Google Document.
 Prepare all your campaign documents anywhere with Google Drive and press one button in Foundry to synchronize and be ready to play.
