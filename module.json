@@ -1,0 +1,30 @@
+{
+  "id": "gdoc-journals",
+  "title": "GDoc Journals - Sync a journal with a Google Document",
+  "description": "A module that allows to link a journal to Google Documents.",
+  "authors": [
+    {
+      "name": "MrTooPick",
+      "url": "https://github.com/TooPick"
+    }
+  ],
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "9",
+    "verified": "10"
+  },
+  "scripts": [],
+  "esmodules": ["scripts/gdoc-journals.mjs"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ]
+}

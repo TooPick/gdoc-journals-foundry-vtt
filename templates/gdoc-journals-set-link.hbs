@@ -1,0 +1,47 @@
+<form>
+  <button type="button" data-action="addLink">
+    <i class="fas fa-plus"></i>{{localize "GDOC_JOURNALS.add-link"}}
+  </button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>{{localize "GDOC_JOURNALS.index"}}</th>
+        <th>{{localize "GDOC_JOURNALS.title"}}</th>
+        <th>{{localize "GDOC_JOURNALS.url"}}</th>
+        <th>{{localize "GDOC_JOURNALS.action"}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each currentLinks}}
+        <tr>
+          <td>{{@index}}</td>
+          <td>
+            <input
+              type="text"
+              value="{{this.link}}"
+              name="{{this.id}}"
+              data-dtype="String"
+            />
+          </td>
+          <td>{{this.title}}</td>
+          <td>
+            <button
+              type="button"
+              data-action="removeLink"
+              data-index="{{@index}}"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <hr />
+
+  <button type="button" data-action="update">
+    <i class="fas fa-rotate"></i>{{localize "GDOC_JOURNALS.update"}}
+  </button>
+</form>
