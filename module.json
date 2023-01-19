@@ -1,7 +1,7 @@
 {
   "id": "gdoc-journals",
   "title": "GDoc Journals - Sync a journal with a Google Document",
-  "description": " A module that allows to link a journal to Google Documents.",
+  "description": "A module that allows to link a journal to Google Documents.",
   "authors": [
     {
       "name": "MrTooPick",
