@@ -34,6 +34,27 @@ export class GDocJournalsUtils {
   }
 
   /**
+   * Retrieve existing pages of the journal given with a link associated
+   */
+  static getAllPageWithLinks(journalSheetId) {
+    const journal = game.journal.get(journalSheetId);
+    const pages = [];
+    if (journal !== undefined) {
+      journal.pages.forEach((page) => {
+        const link = page.getFlag(
+          GDocJournals.ID,
+          GDocJournals.FLAGS.GDOC_LINK
+        );
+        if (link !== undefined) {
+          pages.push(page);
+        }
+      });
+    }
+
+    return pages;
+  }
+
+  /**
    * Remove pages with link flag if the link was deleted
    */
   static async removeUnusedPagesLinks(journalSheetId, currentLinks) {
@@ -68,5 +89,56 @@ export class GDocJournalsUtils {
     });
 
     return found;
+  }
+
+  /**
+   * Update the page with the gdoc link in flags
+   */
+  static async updatePage(page) {
+    const gdocLink = page.getFlag(
+      GDocJournals.ID,
+      GDocJournals.FLAGS.GDOC_LINK
+    );
+
+    if (gdocLink) {
+      // Retrieve the Gdoc html and title
+      const result = await GDocJournalsUtils.getGDocHtml(gdocLink.link);
+      gdocLink.title = result.title;
+
+      // Update an existing page
+      const updates = [
+        {
+          _id: page.id,
+          name: result.title,
+          text: {
+            content: result.html,
+          },
+        },
+      ];
+
+      await JournalEntryPage.updateDocuments(updates, {
+        parent: page.parent,
+      });
+
+      // Update the flag link data
+      await page.setFlag(
+        GDocJournals.ID,
+        GDocJournals.FLAGS.GDOC_LINK,
+        gdocLink
+      );
+    }
+  }
+
+  /**
+   * Find all journals with gdoc links and update them
+   */
+  static async syncAllJournals() {
+    game.journal.forEach(async (journal) => {
+      console.log(journal);
+      const pages = await GDocJournalsUtils.getAllPageWithLinks(journal.id);
+      pages.forEach((page) => {
+        GDocJournalsUtils.updatePage(page);
+      });
+    });
   }
 }

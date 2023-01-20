@@ -7,6 +7,7 @@
     "title": "Title",
     "url": "Url",
     "action": "Action",
-    "update": "Update"
+    "update": "Update",
+    "update-all": "Update all GDocs Journals"
   }
 }
