@@ -117,69 +117,44 @@ export class GDocJournalsConfig extends FormApplication {
     const journalSheetId = this.options.journalSheetId;
 
     if (Array.isArray(this.options.currentLinks)) {
-      // Remove journal pages if link was removed
-      await GDocJournalsUtils.removeUnusedPagesLinks(
-        journalSheetId,
-        this.options.currentLinks
-      );
-
       const journal = await game.journal.get(journalSheetId);
       if (journal !== undefined) {
-        await this.options.currentLinks.forEach(async (gdocLink) => {
-          // Retrieve the Gdoc html and title
-          const result = await GDocJournalsUtils.getGDocHtml(gdocLink.link);
+        // Remove journal pages if link was removed
+        await GDocJournalsUtils.removeUnusedPagesLinks(
+          journalSheetId,
+          this.options.currentLinks
+        );
 
+        await this.options.currentLinks.forEach(async (gdocLink) => {
           // Search for an existing page for this link
-          const foundPage = await GDocJournalsUtils.findJournalPageWithLink(
+          let page = await GDocJournalsUtils.findJournalPageWithLink(
             journalSheetId,
             gdocLink
           );
 
-          gdocLink.title = result.title;
-
-          if (foundPage) {
-            // Update an existing page
-            const updates = [
-              {
-                _id: foundPage.id,
-                name: result.title,
-                text: {
-                  content: result.html,
-                },
-              },
-            ];
-
-            await JournalEntryPage.updateDocuments(updates, {
-              parent: journal,
-            });
-
-            // Update the flag link data
-            await foundPage.setFlag(
-              GDocJournals.ID,
-              GDocJournals.FLAGS.GDOC_LINK,
-              gdocLink
-            );
-          } else {
-            // Create a new page
-            const page = await JournalEntryPage.createDocuments(
+          if (!page) {
+            //Create a new page
+            page = await JournalEntryPage.createDocuments(
               [
                 {
-                  name: result.title,
-                  text: {
-                    content: result.html,
-                  },
+                  name: gdocLink.link,
                 },
               ],
               { parent: journal }
             );
 
+            page = journal.pages.get(page[0].id);
+
             // Update the flag link data
-            await page[0].setFlag(
+            await page.setFlag(
               GDocJournals.ID,
               GDocJournals.FLAGS.GDOC_LINK,
               gdocLink
             );
           }
+
+          // Update the page with gdoc link
+          GDocJournalsUtils.updatePage(page);
         });
       }
     }
