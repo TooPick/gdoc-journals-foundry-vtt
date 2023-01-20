@@ -33,7 +33,7 @@ Hooks.on("getDocumentSheetHeaderButtons", (journalSheet, args) => {
     const button = {
       class: "gdoc-journal-set-link",
       icon: "fas fa-file",
-      label: "Gdoc Journals",
+      label: game.i18n.localize("GDOC_JOURNALS.btn-title"),
       onclick: (event) => {
         GDocJournals.config.showConfig(journalSheet.object._id);
       },
