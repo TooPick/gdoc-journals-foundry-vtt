@@ -4,6 +4,8 @@
 **GDoc Journals** allows you to **link a journal** to **one or more public Google Document**. Each document will be linked to one Journal Page and you only have to press **one button to synchronize** it with your Google Document.
 Prepare all your campaign documents anywhere with Google Drive and press one button in Foundry to synchronize and be ready to play.
 
+*Available in English and French*
+
 ## How to use it
  1. Make your Google Document public by clicking on the "Share" button on the top right of the page.
 ![01](https://user-images.githubusercontent.com/7482407/213572348-2472a882-b81e-4d64-8d78-7cf0ed05b7d3.png)
