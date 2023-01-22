@@ -134,7 +134,6 @@ export class GDocJournalsUtils {
    */
   static async syncAllJournals() {
     game.journal.forEach(async (journal) => {
-      console.log(journal);
       const pages = await GDocJournalsUtils.getAllPageWithLinks(journal.id);
       pages.forEach((page) => {
         GDocJournalsUtils.updatePage(page);
