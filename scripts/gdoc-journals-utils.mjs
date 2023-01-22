@@ -82,7 +82,7 @@ export class GDocJournalsUtils {
     journal.pages.forEach(async (page) => {
       const link = page.getFlag(GDocJournals.ID, GDocJournals.FLAGS.GDOC_LINK);
 
-      if (link.id === gdocLink.id) {
+      if (link && link.id === gdocLink.id) {
         found = page;
         return;
       }
