@@ -26,7 +26,7 @@ _Available in English and French_
 8.  A new page will be created with your document content. Each time you want to update the journal, you only have to press the update button "Update". It's possible to add any number of links. A new page will be created for each one, and the "Update" button will sync every link at once.
     ![08](https://user-images.githubusercontent.com/7482407/213572831-e5681100-bb77-43ce-a369-9a28853d29b9.png)
 
-### Update all at one
+### Update all at once
 
 This button on the journal tab will search and update all journals with GDoc links.
 
