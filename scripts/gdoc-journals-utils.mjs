@@ -9,7 +9,21 @@ export class GDocJournalsUtils {
     const response = await fetch(config.API_ENDPOINT + "?url=" + link, {
       method: "GET",
     });
-    return await response.json();
+    const respJson = await response.json();
+    // await this.downloadImages(respJson.images);
+
+    return respJson;
+  }
+
+  static async downloadImages(images) {
+    console.log(images);
+    images.forEach(async (image) => {
+      const response = await fetch("http://localhost:8080" + "/img/" + image, {
+        method: "GET",
+      });
+      const help = new ImageHelper();
+      help.uploadBase64(await response.text(), image, "/spimage");
+    });
   }
 
   /**

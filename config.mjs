@@ -1,3 +1,3 @@
 export default {
-  API_ENDPOINT: "https://gdoc2Html.too-pixel.com/getAndConvert",
+  API_ENDPOINT: "https://gdoc2html.too-pixel.com/getAndConvert",
 };
